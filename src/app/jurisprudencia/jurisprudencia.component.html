@@ -1,0 +1,33 @@
+<div class="container">
+    <mat-sidenav #firstSidenav mode="side">
+        <!-- Content for the first sidenav -->
+        <app-chat-sentencia></app-chat-sentencia>
+        <!-- <app-price-config [sentencia] = "selectedSentencia"></app-price-config> -->
+    </mat-sidenav>
+     <!-- Main content -->
+     <div class="main-content">
+        <mat-card class="my-card">
+            <mat-card-header>
+              <mat-card-title>Jurisprudencia</mat-card-title>
+              <mat-card-subtitle>Busqueda de Sentencias </mat-card-subtitle>
+            </mat-card-header>
+        
+            <mat-card-content>
+                <div [formGroup]="form" class="example-container">
+                    <mat-form-field floatLabel="always">
+                        <mat-label>Buscar</mat-label>
+                        <input type="search" matInput formControlName="name" placeholder="Escribe algo...">
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+            <mat-card-actions align="end">
+                <!-- <button mat-button [disabled]="!form.valid" (click)="saveForm()">GUARDAR</button> -->
+                <button mat-button (click)="saveForm()">BUSCAR</button>
+              </mat-card-actions>
+        </mat-card>
+        <ng-container *ngIf="searchResult">
+            <app-bjn-search-results *ngFor="let sentencia of searchResult.results" [sentencia]="sentencia" (openChatFunction)="openChatFunction($event)"></app-bjn-search-results>
+        </ng-container>
+    </div>
+</div>
+

@@ -1,0 +1,94 @@
+<mat-card class="my-card">
+    <mat-card-header>
+      <mat-card-title>Crear Alojamiento</mat-card-title>
+      <mat-card-subtitle>Puede ser de cualquier tipo (Hotel, Casa Entera, Habitación privada o compartida, etc.) </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div [formGroup]="form" class="example-container">
+            <mat-form-field floatLabel="always">
+                <mat-label>Link Booking</mat-label>
+                <input formControlName="booking_link" matInput placeholder="Si lo tienes, ingresa el link de tu propiedad en Booking.">
+            </mat-form-field>
+            <mat-form-field floatLabel="always">
+                <mat-label>Link Airbnb</mat-label>
+                <input formControlName="airbnb_link" matInput placeholder="Si lo tienes, ingresa el link de tu propiedad en Airbnb">
+            </mat-form-field>
+            <mat-divider></mat-divider>
+            <mat-form-field floatLabel="always">
+                <mat-label>Titulo</mat-label>
+                <input formControlName="name" matInput placeholder="">
+                <mat-hint>Utiliza el mismo nombre que usas en otras plataformas (e.g: booking, airbnb)</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Descripción</mat-label>
+                <textarea formControlName="description" matInput placeholder="Describe el alojamiento lo mejor que puedas, acuerdate de incluir detalles importantes como si tiene garage, si acepta mascota, etc."></textarea>
+            </mat-form-field>
+            <mat-form-field floatLabel="always">
+                <mat-label>Numero máximo de personas.</mat-label>
+                <input formControlName="max_guests" matInput type="number" class="example-right-align" placeholder="0">
+            </mat-form-field>
+            
+            <mat-divider></mat-divider>
+            <mat-label>Checkin Desde:</mat-label>
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field class="time-input">
+                            <mat-label>Hora</mat-label>
+                            <mat-select formControlName="checkinHourTime">
+                                <mat-option *ngFor="let hour of hours" [value]="hour">{{ hour }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="time-input">
+                            <mat-label>Min</mat-label>
+                            <mat-select formControlName="checkinMinuteTime">
+                                <mat-option *ngFor="let minute of minutes" [value]="minute">{{ minute }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+            
+            <mat-label>Checkout Hasta:</mat-label>
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field class="time-input">
+                            <mat-label>Hora</mat-label>
+                            <mat-select formControlName="checkoutHourTime">
+                                <mat-option *ngFor="let hour of hours" [value]="hour">{{ hour }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="time-input">
+                            <mat-label>Min</mat-label>
+                            <mat-select formControlName="checkoutMinuteTime">
+                                <mat-option *ngFor="let minute of minutes" [value]="minute">{{ minute }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+            
+            <!-- <mat-form-field>
+                <mat-label>Check-out Time</mat-label>
+                <mat-select formControlName="checkoutTime">
+                    <mat-option *ngFor="let hour of hours" [value]="hour">{{ hour }}</mat-option>
+                </mat-select>
+            </mat-form-field> -->
+            <mat-divider></mat-divider>
+            <mat-form-field appearance="fill">
+                <mat-label>Intrucciones para la llave</mat-label>
+                <textarea formControlName="pick_up_keys_instructions" matInput placeholder="Explicale al inquilino como obtener las llaves para ingresar, si aplica."></textarea>
+            </mat-form-field>
+        </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <!-- <button mat-button [disabled]="!form.valid" (click)="saveForm()">GUARDAR</button> -->
+        <button mat-button [disabled]="!form.valid" (click)="saveForm()">GUARDAR</button>
+      </mat-card-actions>
+</mat-card>

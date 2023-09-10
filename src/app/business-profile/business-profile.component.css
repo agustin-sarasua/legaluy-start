@@ -1,0 +1,15 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+.example-container mat-form-field {
+    display: block;
+}
+
+.my-card {
+    width: 100%;
+    max-width: 800px;
+    margin: 10px;
+}
+  

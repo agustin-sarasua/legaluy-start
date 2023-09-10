@@ -1,0 +1,26 @@
+    mat-drawer-content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  mwl-calendar-month-view {
+    width: 100%;
+  }
+
+
+  .container {
+    display: flex;
+    flex-direction: row-reverse; /* Reverse the order of the elements to make the side-navs appear on the right side */
+  }
+  
+  .main-content {
+    flex-grow: 1; /* Allow the main content to occupy the remaining width */
+  }
+  
+  mat-sidenav {
+    max-width: 350px; /* Adjust the width as needed */
+    width: 100%;
+  }
+  

@@ -1,0 +1,36 @@
+<mat-card class="my-card">
+    <mat-card-header>
+      <mat-card-title>Direccion</mat-card-title>
+      <!-- <mat-card-subtitle>Información sobre mi Alojamiento.</mat-card-subtitle> -->
+    </mat-card-header>
+    <mat-card-content>
+        <div [formGroup]="form" class="example-container">
+            <mat-form-field class="example-full-width">
+                <mat-label>Ciudad</mat-label>
+                <input type="text"
+                        placeholder="Selecciona una"
+                        aria-label="Ciudad"
+                        matInput
+                        formControlName="city"
+                        [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Calle, nro de puerta y/o apto</mat-label>
+                <textarea formControlName="address" matInput placeholder="Colon 572, Edificio Plaza, Apto 201"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Intrucciones para llegar</mat-label>
+                <textarea formControlName="how_to_arrive_instructions" matInput placeholder="ej: Es la segunda casa de color roja pegada al supermercado."></textarea>
+            </mat-form-field>
+        </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-button [disabled]="!form.valid" (click)="saveForm()">GUARDAR</button>
+        <!-- <button mat-button>SHARE</button> -->
+      </mat-card-actions>
+</mat-card>

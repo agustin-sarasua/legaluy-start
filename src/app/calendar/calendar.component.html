@@ -1,0 +1,35 @@
+<div class="container">
+    <mat-sidenav #firstSidenav mode="side">
+        <!-- Content for the first sidenav -->
+        <app-price-config [property] = "selectedProperty"></app-price-config>
+        <app-open-days [property]="selectedProperty"></app-open-days>
+    </mat-sidenav>
+
+    <mat-sidenav #secondSidenav mode="side">
+        <!-- Content for the second sidenav -->
+        <app-calendar-selection [selectedDays]="selectedDays"></app-calendar-selection>
+    </mat-sidenav>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <mat-form-field>
+            <mat-label>Publicación</mat-label>
+            <mat-select [(value)]="selectedProperty" (selectionChange)="onPropertyChange()">
+                <mat-option *ngFor="let prop of properties" [value]="prop">
+                {{prop.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <!-- Your main content here -->
+        <mwl-calendar-month-view
+            [viewDate]="viewDate"
+            [events]="events"
+            (dayClicked)="dayClicked($event.day)"
+            (beforeViewRender)="beforeMonthViewRender($event)">
+        </mwl-calendar-month-view>
+
+        <button mat-raised-button (click)="firstSidenav.toggle()">Toggle drawer</button>
+        <button mat-raised-button (click)="secondSidenav.toggle()">Toggle drawer 2</button>
+    </div>
+</div>
+
