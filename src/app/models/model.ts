@@ -96,7 +96,7 @@ export interface Sentencia {
     descriptores?: string[][];
     resumen?: string[][];
     sentencia?: string;
-    numero?: string;
+    numero: string;
     sede?: string;
     importancia?: string;
     tipo?: string;
@@ -105,11 +105,6 @@ export interface Sentencia {
     procedimiento?: string;
 }
 
-// export interface Sentencia {
-//     id?: string;
-//     name?: string;
-//     sentencia?: string;
-// }
 
 export interface SearchSentenciasResponse {
     hits?: number;
@@ -121,4 +116,13 @@ export interface SearchForm {
     text?: string;
 }
 
-  
+
+export interface Message {
+    role: string;
+    text: string;
+}
+
+export interface Conversation {
+    messages: Message[];
+    sentencia_model?: Sentencia | null;
+}

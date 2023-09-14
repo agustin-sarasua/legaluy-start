@@ -18,6 +18,11 @@ export class JurisprudenciaComponent {
   // property: Property | undefined
   searchResult: SearchSentenciasResponse | undefined
   selectedSentencia?: Sentencia;
+  selectedSentenciaMessages: string[] = [];
+  
+  sentenciasMessagesMap: {[key: string]: string[]} = {};
+
+  clickedSentencias?: Sentencia[] = [];
 
   @ViewChild('firstSidenav', { static: true }) firstDrawer!: MatSidenav;
   
@@ -28,7 +33,7 @@ export class JurisprudenciaComponent {
     });
   }
 
-  saveForm(): void {
+  searchSentencias(): void {
     if (this.form.valid) {
       this.globalService.showLoading();
       const { 
@@ -64,8 +69,26 @@ export class JurisprudenciaComponent {
     }
   }
 
+  selectSentencia(sentencia: Sentencia): void {
+    this.selectedSentencia = sentencia;
+    this.selectedSentenciaMessages = this.sentenciasMessagesMap[sentencia.numero] || [];
+  }
+
+  closeSentencia(sentencia: Sentencia): void {
+    this.clickedSentencias = this.clickedSentencias?.filter((s) => s.numero !== sentencia.numero);
+
+  }
+
   openChatFunction(sentencia: Sentencia): void {
     console.log('openChatFunction', sentencia);
+    if (!this.clickedSentencias?.includes(sentencia)) {
+      this.clickedSentencias?.push(sentencia);
+    }
+
+    this.selectedSentencia = sentencia;
+    this.selectedSentenciaMessages = this.sentenciasMessagesMap[sentencia.numero] || [];
+    this.sentenciasMessagesMap[sentencia.numero] = this.selectedSentenciaMessages;
+
     this.firstDrawer.open();
   }
 

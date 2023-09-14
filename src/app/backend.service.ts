@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { GlobalService } from './global.service';
-import { Business, PriceConfig, Property, SearchForm, SearchSentenciasResponse, Sentencia, UpdateOpenDays } from './models/model';
+import { Business, Conversation, PriceConfig, Property, SearchForm, SearchSentenciasResponse, Sentencia, UpdateOpenDays } from './models/model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,8 @@ import { Business, PriceConfig, Property, SearchForm, SearchSentenciasResponse, 
 export class BackendService {
 
   private readonly API_URL = 'http://localhost:8000';
+  // private readonly API_URL = 'https://ec2-44-202-120-57.compute-1.amazonaws.com';
+
 
   constructor(private http: HttpClient, private globalService: GlobalService) { }
 
@@ -65,5 +67,10 @@ export class BackendService {
   search(searchForm: SearchForm): Observable<SearchSentenciasResponse> {
     const url = `${this.API_URL}/search`;
     return this.http.post<SearchSentenciasResponse>(url, searchForm);
+  }
+
+  chat(conversation: Conversation): Observable<string> {
+    const url = `${this.API_URL}/message`;
+    return this.http.post<string>(url, conversation);
   }
 }

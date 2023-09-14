@@ -3,7 +3,9 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCardModule} from '@angular/material/card';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { Sentencia } from '../models/model';
+import { SentenciaTextDialogComponent } from '../sentencia-text-dialog/sentencia-text-dialog.component';
 
 @Component({
   selector: 'app-bjn-search-results',
@@ -17,10 +19,29 @@ export class BjnSearchResultsComponent implements OnChanges {
 
   @Output() openChatFunction: EventEmitter<Sentencia> = new EventEmitter<Sentencia>();
 
+  constructor(public dialog: MatDialog) {
+
+  }
+
+  openDialog() {
+    const dialogData = {
+      title: 'Dialog Title',
+      content: 'This is the content to be displayed in the dialog.',
+    };
+
+    const dialogRef = this.dialog.open(SentenciaTextDialogComponent,  {
+      data: this.sentencia,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['sentencia']) {
-      console.log('sentencia changed:', this.sentencia);
-    }
+    // if (changes['sentencia']) {
+    //   console.log('sentencia changed:', this.sentencia);
+    // }
   }
 
   truncateText(text: string | undefined, maxLength: number): string {

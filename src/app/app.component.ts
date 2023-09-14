@@ -31,18 +31,18 @@ export class AppComponent implements OnInit {
 
     this.auth.isAuthenticated$.subscribe(loggedIn => {
       if (loggedIn) {
-        this.backend.getBusinessInfo().subscribe({
-          next: (data) => {
-            console.log(data);
-            // this.global.setBusiness(data);
-          },
-          error: (error) => {
-            console.error('Error:', error);
-          },
-          complete: () => {
-            console.log('Completed');
-          }
-        });
+        // this.backend.getBusinessInfo().subscribe({
+        //   next: (data) => {
+        //     console.log(data);
+        //     // this.global.setBusiness(data);
+        //   },
+        //   error: (error) => {
+        //     console.error('Error:', error);
+        //   },
+        //   complete: () => {
+        //     console.log('Completed');
+        //   }
+        // });
       }
     });
   }

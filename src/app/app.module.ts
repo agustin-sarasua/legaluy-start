@@ -38,6 +38,8 @@ import { BusinessContactComponent } from './business-contact/business-contact.co
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { EventColor } from 'calendar-utils';
 import {MatDividerModule} from '@angular/material/divider';
+import { MatDialogModule } from '@angular/material/dialog';
+
 // import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
@@ -59,6 +61,7 @@ import { OpenDaysComponent } from './open-days/open-days.component';
 import { JurisprudenciaComponent } from './jurisprudencia/jurisprudencia.component';
 import { BjnSearchResultsComponent } from './bjn-search-results/bjn-search-results.component';
 import { ChatSentenciaComponent } from './chat-sentencia/chat-sentencia.component';
+import { SentenciaTextDialogComponent } from './sentencia-text-dialog/sentencia-text-dialog.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +78,7 @@ import { ChatSentenciaComponent } from './chat-sentencia/chat-sentencia.componen
     JurisprudenciaComponent,
     BjnSearchResultsComponent,
     ChatSentenciaComponent,
+    SentenciaTextDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -99,6 +103,7 @@ import { ChatSentenciaComponent } from './chat-sentencia/chat-sentencia.componen
     MatAutocompleteModule,
     MatSelectModule,
     ReactiveFormsModule,
+    MatDialogModule,
     NgFor,
     AsyncPipe,
     ReactiveFormsModule,

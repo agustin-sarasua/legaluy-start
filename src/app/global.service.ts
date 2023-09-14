@@ -3,6 +3,7 @@ import { Injectable, TemplateRef } from '@angular/core';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { MatSpinner } from '@angular/material/progress-spinner';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class GlobalService {
   private overlayRef: OverlayRef | null = null;
 
   private loadingOverlayTemplate: TemplateRef<any> | undefined;
-
+  
   constructor(private overlay: Overlay) {}
 
   init(loadingOverlayTemplate: TemplateRef<any>): void {

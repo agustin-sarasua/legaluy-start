@@ -1,8 +1,18 @@
 <div class="container">
     <mat-sidenav #firstSidenav mode="side">
         <!-- Content for the first sidenav -->
-        <app-chat-sentencia></app-chat-sentencia>
-        <!-- <app-price-config [sentencia] = "selectedSentencia"></app-price-config> -->
+        <div class="horizontal-scroll">
+            <a *ngFor="let sentencia of clickedSentencias" 
+                (click)="selectSentencia(sentencia)"
+                [class.selected]="sentencia === selectedSentencia">
+                {{ sentencia.numero }}
+                <button mat-icon-button (click)="closeSentencia(sentencia)">
+                    <mat-icon>close</mat-icon> <!-- Use "close" as the Material icon name for the "X" icon -->
+                </button>
+            </a>
+        </div>
+        <!-- Content for the first sidenav -->
+        <app-chat-sentencia [sentencia]="selectedSentencia" [messages]="selectedSentenciaMessages"></app-chat-sentencia>
     </mat-sidenav>
      <!-- Main content -->
      <div class="main-content">
@@ -16,13 +26,13 @@
                 <div [formGroup]="form" class="example-container">
                     <mat-form-field floatLabel="always">
                         <mat-label>Buscar</mat-label>
-                        <input type="search" matInput formControlName="name" placeholder="Escribe algo...">
+                        <input type="search" matInput formControlName="name" placeholder="Escribe algo..." (keyup.enter)="searchSentencias()">
                     </mat-form-field>
                 </div>
             </mat-card-content>
             <mat-card-actions align="end">
                 <!-- <button mat-button [disabled]="!form.valid" (click)="saveForm()">GUARDAR</button> -->
-                <button mat-button (click)="saveForm()">BUSCAR</button>
+                <button mat-button (click)="searchSentencias()">BUSCAR</button>
               </mat-card-actions>
         </mat-card>
         <ng-container *ngIf="searchResult">
